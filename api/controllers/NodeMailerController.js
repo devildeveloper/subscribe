@@ -12,8 +12,8 @@ module.exports = {
 									.withRequired('email',nodeValidator.isString())
 
 		if(check){
-			NodeMailerService(req.param('user'),function(result){
-				res.send(result)
+			NodeMailerService(req.param('user'),function(err,result){
+				res.json({err:err,response:result})
 			});
 		}else{
 			res.send('bad params')

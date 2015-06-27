@@ -12,8 +12,11 @@ module.exports=function(mail,cb){
 		}
 		api.call('lists', 'subscribe', data, function (error, data) {
 		    if (error)
-		        cb(error.message);
+		        cb(error.message,data)
+		    	
 		    else
-		        cb(JSON.stringify(data)); // Do something with your data!
+		        cb(null,data); // Do something with your data!*/
+
+		    console.log('error')
 		});		
 }

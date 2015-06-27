@@ -13,10 +13,12 @@ block body
 			.alert.alert-warning(role="alert") Estamos procesando tu solicitud
 			img(src="/images/catloader.gif",width="180px")
 		.center-content(ng-show="success")
-			.alert.alert-success(role="alert") Tus datos se han registrado correctamente
+			.alert.alert-success(role="alert")
+				strong(ng-hide="wasSuscribed") Tus datos se han registrado correctamente
+				strong(ng-show="wasSuscribed") Al parecer ya estabas suscrito :)
 			img(src="/images/nyan_cat.gif",width="200px")
 		.center-content(ng-show="error")
 			.alert.alert-danger(role="alert")
-				h3 No tengo un gif para esto ....
+				h2 No tengo un gif para esto ....
 				p desafortunadamente algo ha salido mal :(
 				pre {{errorLog}}

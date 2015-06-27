@@ -9,6 +9,7 @@ function sendController($scope,$sails){
 	$scope.loader  = false;
 	$scope.success = false;
 	$scope.error   = false;
+	$scope.wasSuscribed = false;
 	$scope.send=function(user){
 		$scope.loader=true;
 		$sails.post('/suscribe',{user:user})
@@ -16,6 +17,11 @@ function sendController($scope,$sails){
 				$scope.success=true;
 				$scope.loader = false
 				$scope.user = {} ;
+				if(data.err){
+					$scope.wasSuscribed = true;
+				}
+				console.log(data)
+				window.data=data;
 			})
 			.error(function(data, status, headers, jwr){
 				$scope.error = true;
