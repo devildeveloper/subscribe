@@ -1,0 +1,22 @@
+extends ./layout
+block body
+	.container(ng-app="sendStudentData",ng-controller="send")
+		form.center-content(novalidate,name="StudentInfo",ng-submit="send(user)",ng-hide="loader || success || error")
+			h3 Ingresa tus datos 
+			.form-group(ng-class="{'has-error':StudentInfo.userName.$invalid && StudentInfo.userName.$touched}")
+				input(type="text",class="form-control",placeholder="Ingresa tu nombre",ng-model="user.name",name="userName",required,ng-disabled="showCat")
+			.form-group(ng-class="{'has-error':StudentInfo.userEmail.$invalid && StudentInfo.userEmail.$touched}")
+				input(type="email",class="form-control",placeholder="Ingresa tu e-mail",ng-model="user.email",name="userEmail",required,ng-disabled="showCat")
+			button(type="submit",class="btn btn-primary",ng-disabled="StudentInfo.$invalid") Enviar
+			button(type="reset",class="btn btn-danger",ng-click="clear()") Limpiar
+		.center-content(ng-show="loader")
+			.alert.alert-warning(role="alert") Estamos procesando tu solicitud
+			img(src="/images/catloader.gif",width="180px")
+		.center-content(ng-show="success")
+			.alert.alert-success(role="alert") Tus datos se han registrado correctamente
+			img(src="/images/nyan_cat.gif",width="200px")
+		.center-content(ng-show="error")
+			.alert.alert-danger(role="alert")
+				h3 No tengo un gif para esto ....
+				p desafortunadamente algo ha salido mal :(
+				pre {{errorLog}}
